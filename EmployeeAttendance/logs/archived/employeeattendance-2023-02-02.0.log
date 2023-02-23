@@ -1,0 +1,164 @@
+2023-02-02 11:01:44,982 WARN com.zaxxer.hikari.pool.HikariPool$HouseKeeper [HikariPool-2 housekeeper] HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1d3h9m52s620ms97µs700ns).
+2023-02-02 11:54:43,298 INFO com.employee.attendance.controller.AttendanceController [http-nio-8080-exec-3] Get all details for attendance
+2023-02-02 11:55:07,326 INFO com.employee.attendance.controller.LeaveCalendarController [http-nio-8080-exec-4] Get all Details For Leave
+2023-02-02 11:55:13,283 INFO com.employee.attendance.controller.LeaveCalendarController [http-nio-8080-exec-5] Get all Details For Leave
+2023-02-02 11:55:16,580 INFO com.employee.attendance.controller.LeaveCalendarController [http-nio-8080-exec-6] Get all Details For Leave
+2023-02-02 12:09:04,078 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(154)-127.0.0.1] Application shutdown requested.
+2023-02-02 12:09:04,181 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(154)-127.0.0.1] Pausing ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:09:04,183 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(154)-127.0.0.1] Stopping service [Tomcat]
+2023-02-02 12:09:04,188 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(154)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-02-02 12:09:04,211 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(154)-127.0.0.1] Stopping ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:09:04,216 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(154)-127.0.0.1] Destroying ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:09:04,234 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [RMI TCP Connection(154)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-02 12:09:04,256 INFO com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(154)-127.0.0.1] HikariPool-2 - Shutdown initiated...
+2023-02-02 12:09:04,264 INFO com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(154)-127.0.0.1] HikariPool-2 - Shutdown completed.
+2023-02-02 12:11:05,507 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-02-02 12:11:05,512 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting EmployeeAttendanceApplication using Java 17.0.5 on DESKTOP-85G7RT7 with PID 18864 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.17.0.RELEASE\Spring_Boot_Vijay\EmployeeAttendance\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.17.0.RELEASE\Spring_Boot_Vijay\EmployeeAttendance)
+2023-02-02 12:11:05,516 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-02-02 12:11:05,594 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-02 12:11:05,594 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-02 12:11:06,900 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-02 12:11:07,008 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 92 ms. Found 6 JPA repository interfaces.
+2023-02-02 12:11:07,827 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-02-02 12:11:07,842 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:11:07,843 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-02-02 12:11:07,843 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-02-02 12:11:07,955 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-02-02 12:11:07,956 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2361 ms
+2023-02-02 12:11:08,153 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-02 12:11:08,237 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-02 12:11:08,440 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-02 12:11:08,580 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-02-02 12:11:08,588 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-02-02 12:11:08,989 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-02-02 12:11:09,031 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-02-02 12:11:10,141 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-02 12:11:10,154 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-02 12:11:10,843 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-02 12:11:11,037 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-02-02 12:11:11,937 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-02-02 12:11:11,969 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:11:12,001 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-02 12:11:12,012 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started EmployeeAttendanceApplication in 7.328 seconds (JVM running for 11.125)
+2023-02-02 12:12:56,672 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-02 12:12:56,672 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-02-02 12:12:56,675 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2023-02-02 12:12:56,846 INFO com.employee.attendance.controller.UserController [http-nio-8080-exec-2] Create User
+2023-02-02 12:15:40,932 INFO com.employee.attendance.controller.UserController [http-nio-8080-exec-4] login User
+2023-02-02 12:15:41,281 INFO com.employee.attendance.controller.AttendanceController [http-nio-8080-exec-5] Get all details for attendance
+2023-02-02 12:16:33,256 INFO com.employee.attendance.controller.LeaveCalendarController [http-nio-8080-exec-6] Get all Details For Leave
+2023-02-02 12:16:55,840 INFO com.employee.attendance.controller.UserController [http-nio-8080-exec-7] login User
+2023-02-02 12:16:55,944 INFO com.employee.attendance.controller.AttendanceController [http-nio-8080-exec-8] Get all details for attendance
+2023-02-02 12:16:57,927 INFO com.employee.attendance.controller.LeaveCalendarController [http-nio-8080-exec-9] Get all Details For Leave
+2023-02-02 12:18:39,946 INFO com.employee.attendance.controller.AttendanceController [http-nio-8080-exec-1] Get all details for attendance
+2023-02-02 12:18:41,330 INFO com.employee.attendance.controller.LeaveCalendarController [http-nio-8080-exec-2] Get all Details For Leave
+2023-02-02 12:19:30,913 INFO com.employee.attendance.controller.AttendanceController [http-nio-8080-exec-3] Get all details for attendance
+2023-02-02 12:19:32,807 INFO com.employee.attendance.controller.LeaveCalendarController [http-nio-8080-exec-4] Get all Details For Leave
+2023-02-02 12:21:42,880 INFO com.employee.attendance.controller.AttendanceController [http-nio-8080-exec-6] Get all details for attendance
+2023-02-02 12:21:44,578 INFO com.employee.attendance.controller.LeaveCalendarController [http-nio-8080-exec-7] Get all Details For Leave
+2023-02-02 12:21:47,998 INFO com.employee.attendance.controller.LeaveCalendarController [http-nio-8080-exec-8] Get all Details For Leave
+2023-02-02 12:35:52,731 INFO com.employee.attendance.controller.UserController [http-nio-8080-exec-1] Create User
+2023-02-02 12:39:32,692 INFO com.employee.attendance.controller.UserController [http-nio-8080-exec-3] login User
+2023-02-02 12:41:08,839 INFO com.employee.attendance.controller.UserController [http-nio-8080-exec-5] login User
+2023-02-02 12:41:25,647 INFO com.employee.attendance.controller.UserController [http-nio-8080-exec-7] login User
+2023-02-02 12:41:25,928 INFO com.employee.attendance.controller.AttendanceController [http-nio-8080-exec-8] Get all details for attendance
+2023-02-02 12:42:43,825 INFO com.employee.attendance.controller.AttendanceController [http-nio-8080-exec-10] Get all details for attendance
+2023-02-02 12:43:01,223 INFO com.employee.attendance.controller.UserController [http-nio-8080-exec-1] login User
+2023-02-02 12:43:01,326 INFO com.employee.attendance.controller.AttendanceController [http-nio-8080-exec-2] Get all details for attendance
+2023-02-02 12:45:11,451 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8080-exec-10] Init duration for springdoc-openapi is: 466 ms
+2023-02-02 12:45:25,303 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "java.time.temporal.Temporal.until(java.time.temporal.Temporal, java.time.temporal.TemporalUnit)" because "temporal1Inclusive" is null] with root cause
+java.lang.NullPointerException: Cannot invoke "java.time.temporal.Temporal.until(java.time.temporal.Temporal, java.time.temporal.TemporalUnit)" because "temporal1Inclusive" is null
+	at java.base/java.time.temporal.ChronoUnit.between(ChronoUnit.java:272)
+	at com.employee.attendance.serviceimpl.AttendanceServiceImpl.getDatesBetweenUsingJava(AttendanceServiceImpl.java:217)
+	at com.employee.attendance.serviceimpl.AttendanceServiceImpl.getOverAllDetails(AttendanceServiceImpl.java:76)
+	at com.employee.attendance.controller.AttendanceController.getGroupEmployee(AttendanceController.java:87)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:670)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-02-02 12:46:41,737 INFO org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(39)-127.0.0.1] Application shutdown requested.
+2023-02-02 12:46:41,754 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(39)-127.0.0.1] Pausing ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:46:41,755 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(39)-127.0.0.1] Stopping service [Tomcat]
+2023-02-02 12:46:41,757 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(39)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-02-02 12:46:41,761 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(39)-127.0.0.1] Stopping ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:46:41,765 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(39)-127.0.0.1] Destroying ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:46:41,771 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [RMI TCP Connection(39)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-02 12:46:41,776 INFO com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(39)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-02-02 12:46:41,785 INFO com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(39)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-02-02 12:47:03,419 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-02-02 12:47:03,433 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting EmployeeAttendanceApplication using Java 17.0.5 on DESKTOP-85G7RT7 with PID 18444 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.17.0.RELEASE\Spring_Boot_Vijay\EmployeeAttendance\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.17.0.RELEASE\Spring_Boot_Vijay\EmployeeAttendance)
+2023-02-02 12:47:03,435 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-02-02 12:47:03,527 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-02 12:47:03,527 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-02 12:47:04,659 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-02 12:47:04,784 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 103 ms. Found 6 JPA repository interfaces.
+2023-02-02 12:47:05,546 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-02-02 12:47:05,560 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:47:05,561 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-02-02 12:47:05,561 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-02-02 12:47:05,695 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-02-02 12:47:05,698 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2170 ms
+2023-02-02 12:47:06,048 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-02 12:47:06,134 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-02 12:47:06,463 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-02 12:47:06,617 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-02-02 12:47:06,625 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-02-02 12:47:07,019 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-02-02 12:47:07,069 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-02-02 12:47:08,221 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-02 12:47:08,242 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-02 12:47:09,178 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-02 12:47:09,420 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-02-02 12:47:10,659 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-02-02 12:47:10,690 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-02-02 12:47:10,723 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-02 12:47:10,736 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started EmployeeAttendanceApplication in 7.9 seconds (JVM running for 9.087)
+2023-02-02 12:47:19,203 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-02 12:47:19,204 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-02-02 12:47:19,206 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms

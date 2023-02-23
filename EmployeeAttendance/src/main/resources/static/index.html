@@ -1,0 +1,1058 @@
+<html>
+
+
+
+
+
+<head>
+  <title>Attendance</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+  
+
+
+
+
+
+</head>
+
+<div id="placeholder">
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+
+
+
+
+$(document).ready(function () {
+  
+ $.ajax({
+      type: "GET",
+      dataTypa: "JSON",
+      url: "http://localhost:8080/leaveCalendar",
+      success: function (responseText) {
+        let datesForDisable = [];
+               
+        $.each(responseText, function (index, item) {
+          datesForDisable.push(item.holidayLeaveDate);
+          
+        });
+        var FromEndDate = new Date();
+    
+       console.log(datesForDisable);
+    
+    $('#date').datepicker({
+          endDate: FromEndDate, 
+          autoclose: true,
+          // format: "dd-mm-yyyy",
+          format: "yyyy-mm-dd",
+             daysOfWeekHighlighted: "0,7",
+             language: 'en',
+             daysOfWeekDisabled: [0, 7],
+             datesDisabled: datesForDisable
+            
+        });
+      
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(JSON.stringify(e.responseJSON.message));
+      }
+    });
+ 
+
+    if (localStorage.getItem('user') !== '' && localStorage.getItem('userName') != "") {
+      $("#placeholder").load("navbar.html");
+
+
+      if (localStorage.getItem('role') === 'Admin') {
+        overAllUserReport();
+
+      }
+      else {
+        attendance();
+        overAllUserStatus();
+      }
+    } else {
+      location.replace("/");
+    }
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // ---------------  save attendance--------------
+  $(document).ready(function () {
+
+    $("#saveAttendance").click(function () {
+
+
+
+
+
+
+      // var now = new Date();
+      // var day = ("0" + now.getDate()).slice(-2);
+      // var month = ("0" + (now.getMonth() + 1)).slice(-2);
+      // var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+
+      var postDate = jQuery.trim($('#date').val());
+      var postStartTime = jQuery.trim($("#startTime").val());
+      var postEndTime = jQuery.trim($("#endTime").val());
+
+
+
+      if (postDate == '') {
+        $('#dateError').text('Date field is required');
+        return false;
+      } else {
+
+        $('#dateError').empty();
+      }
+
+
+
+
+      if (postStartTime == '') {
+        $('#startTimeError').text('Start Time field is required');
+        return false;
+      } else {
+
+        $('#startTimeError').empty();
+      }
+
+      if (postEndTime == '') {
+        $('#endTimeError').text('End Time field is required');
+        return false;
+      } else {
+
+        $('#endTimeError').empty();
+      }
+      
+
+      var date = $('#date').val();
+      var startTime = $('#startTime').val() + ':00';
+      var endTime = $('#endTime').val() + ':00';
+
+
+
+      var details = {
+        "date": date,
+        "startTime": startTime,
+        "endTime": endTime,
+        "employeeId": localStorage.getItem('employeeId'),
+        "userId": localStorage.getItem('userId')
+       
+      };
+      console.log(JSON.stringify(details));
+      $.ajax({
+        url: "http://localhost:8080/attendance",
+        type: "POST",
+        dataType: "JSON",
+        contentType: "application/json",
+        data: JSON.stringify(details),
+        success: function (response) {
+          // data-bs-dismiss="modal"
+
+          $('#attendanceForm')[0].reset();
+
+          attendance();
+          overAllUserStatus() 
+        }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+
+
+      });
+    })
+  });
+
+  // -----------------Edit attendance----------------------
+  var editDataId = "";
+  function editAttendance(attendanceId) {
+
+    editDataId = attendanceId;
+    document.getElementById('saveAttendance').hidden = true;
+    document.getElementById('updateAttendance').hidden = false;
+
+
+
+    $.ajax({
+      dataType: "JSON",
+      url: "http://localhost:8080/attendance/" + attendanceId,
+      type: "GET",
+
+      success: function (response) {
+
+        $('#date').val(response.date);
+        $('#startTime').val(response.startTime);
+        $('#endTime').val(response.endTime);
+
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+    });
+  }
+
+  function putAttendance() {
+
+    var details = {
+
+
+      'date': $('#date').val(),
+      'startTime': $('#startTime').val()+ ':00',
+      'endTime': $('#endTime').val()+ ':00',
+      'id': localStorage.getItem('userId')
+    };
+    $.ajax({
+      url: "http://localhost:8080/attendance/" + editDataId,
+      type: "PUT",
+      data: JSON.stringify(details),
+      contentType: "application/json",
+      success: function (data) {
+        addAndUpdate()
+
+        attendance();
+        overAllUserStatus()
+        
+        $('#date').val("");
+        $('#startTime').val("");
+        $('#endTime').val("");
+
+      }, error: function (e) {
+        $(".modal-body").text("");
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+
+    });
+  }
+
+  // -----------------delete attendance----------------------
+  function deleteAttendance(attendanceId) {
+    $.ajax({
+      type: "DELETE",
+      dataType: "JSON",
+      url: "http://localhost:8080/attendance/" + attendanceId,
+      success: function (responseText) {
+        window.location = "index.html";
+        attendance();
+        overAllUserStatus()
+
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+    });
+
+  }
+
+
+
+  // ----------------------------get oVER ALL attendance------------------
+  function overAllUserReport() {
+
+    $.ajax({
+      dataType: "JSON",
+      url: "http://localhost:8080/attendance/group",
+      type: "GET",
+
+      success: function (responseText) {
+
+        responseText.sort((a, b) => {
+          if (a.balanceHour < b.balanceHour) return -1
+          return a.balanceHour > b.balanceHour
+        });
+        var is_Data = "";
+        var is_Data1 = "";
+
+        if (localStorage.getItem('role') === 'Admin') {
+          is_Data1 += '<tr><th><h5><b>Name</b></h5></th></b></h5><th><h5><b>Over All Total Hours</th></b></h5><th><h5><b>Employee Spend Hour</th></b></h5><th><h5><b>Balance Hour</th></b></h5><th><h5><b>Extra Hour</th></b></h5><th><h5><b>Status</th></b></h5></tr>';
+        }
+
+        $.each(responseText, function (index, item) {
+
+
+          if (localStorage.getItem('role') === 'Admin') {
+            if(item.status==="Under Time"){
+            is_Data += '<tr><td class="pRed"><b class="text-uppercase">' + item.employeeName + '</b></td><td class="pRed"><b>' + item.overTotalHours + '</b></td><td class="pRed"><b>' + item.actualHoursSpenByEmployee + '</b></td><td class="pRed text-center"><b>' + item.balanceHour + '</b></td><td class="pRed"><b>---</b></td><td><div class="chipRed"><b>' + item.status + '</b></div></td></tr>';
+            }else{
+              is_Data += '<tr><td class="pGreen"><b class="text-uppercase">' + item.employeeName + '</b></td><td class="pGreen"><b>' + item.overTotalHours + '</b></td><td class="pGreen"><b>' + item.actualHoursSpenByEmployee + '</b></td><td class="pGreen text-center"><b>---</b></td><td class="pGreen"><b>' + item.balanceHour + '</b></td><td><div class="chipGreen"><b>' + item.status + '</b></div></td></tr>';
+
+
+            }
+          }
+
+
+
+
+
+
+        });
+
+        $("#overAllAttendance").empty();
+        $("#overAllAttendance").append(is_Data);
+        $("#overAllReport").empty();
+        $("#overAllReport").append(is_Data1);
+
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+    });
+  }
+
+
+  // --------------------------- oVER ALL Status Employee------------------
+  function overAllUserStatus() {
+
+    $.ajax({
+      dataType: "JSON",
+      url: "http://localhost:8080/attendance/range/" + localStorage.getItem('employeeId'),
+      type: "GET",
+
+      success: function (responseText) {
+
+
+        var is_Data = "";
+        var is_Data1 = "";
+
+        $.each(responseText, function (index, item) {
+
+
+
+          if (localStorage.getItem('role') === 'User') {
+            if(item.status==="Under Time"){
+            is_Data += ' <div class="card mt-3" ><div class="card-body" ><p class="card-text"><div class="pRed"><b>Total Hours : ' + item.overTotalHours + '</b></div></p><p class="card-text"><div class="pRed"><b>Total Spend Hour : ' + item.actualHoursSpenByEmployee + '</b></div></p><p class="card-text"><div class="pRed"><b>Balance Hour : ' + item.balanceHour + '</b></div></p><div class="chipRed"><b>' + item.status + '</b></div></div></div>';
+
+          }else{
+            is_Data += ' <div class="card mt-3" ><div class="card-body" ><p class="card-text"><div class="pGreen"><b>Total Hours : ' + item.overTotalHours + '</b></div></p><p class="card-text"><div class="pGreen"><b>Total Spend Hour : ' + item.actualHoursSpenByEmployee + '</b></div></p><p class="card-text"><div class="pGreen"><b>Extra Hour : ' + item.balanceHour + '</b></div></p> <div class="chipGreen"><b>' + item.status + '</b></div></div></div>';
+
+          }
+
+
+        }
+          
+
+
+
+
+
+
+        });
+
+        $("#overAllStatusEmployee").empty();
+        $("#overAllStatusEmployee").append(is_Data);
+
+
+
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+
+    });
+  }
+function addAndUpdate(){
+        $('.model-body').empty();
+        $('#date').val("");
+        $('#startTime').val("");
+        $('#endTime').val("");
+  document.getElementById('saveAttendance').hidden = false;
+    document.getElementById('updateAttendance').hidden = true;
+}
+
+
+  // ----------------------------get attendance------------------
+  function attendance() {
+
+
+    $.ajax({
+      dataType: "JSON",
+      url: "http://localhost:8080/attendance/perDay/" + localStorage.getItem('employeeId'),
+      contentType: "application/json",
+      type: "GET",
+
+      success: function (responseText) {
+
+        var is_Data = "";
+        var is_Data1 = "";
+        var is_Data2 = "";
+
+
+        responseText.sort((a, b) => {
+          if (a.date > b.date) return -1
+          return a.date < b.date
+        });
+
+        if (localStorage.getItem('role') === 'User') {
+          is_Data1 += '<button type="button" onclick="addAndUpdate()" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addAttendanceUser"data-bs-whatever="@mdo">ADD ATTENDANCE</button>';
+        }
+
+
+
+        if (localStorage.getItem('role') === 'User') {
+          is_Data2 += '<tr><th><h5><b>Date</b></h5></th><th><h5><b>Start Time</b></h5></th><th><h5><b>End Time</b></h5></th><th><h5><b>Actual Hour</b></h5></th><th><h5><b>Target Hour</b></h5></th><th><h5><b>Status</b></h5></th><th colspan="2"><h5><b>Action</b></h5></th></tr>';
+        }
+
+        $.each(responseText, function (index, item) {
+
+
+          if (localStorage.getItem('role') === 'User') {
+            if(item.status==="Under Time"){
+
+              is_Data += '<tr><td class="pRed">' + item.date + '</td><td class="pRed">' + item.startTime + '</td><td class="pRed">' + item.endTime + '</td><td class="pRed">' + item.actualHour + '</td><td class="pRed">' + item.targetHour + '</td><td class="pRed">' + item.status + '</td><td class="pRed"><button type="button" id="edit" onclick="editAttendance(' + item.attendanceId + ')" class=\"btnSelect btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#addAttendanceUser"data-bs-whatever="@mdo\"> Edit</button></td><td class="pRed"><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" onclick="modelDeleteAttendance(' + item.attendanceId + ')" data-bs-target="#deleteModel"data-bs-whatever="@mdo">Delete</button></td></tr>';
+          }else{
+            is_Data += '<tr><td class="pGreen">' + item.date + '</td><td class="pGreen">' + item.startTime + '</td><td class="pGreen">' + item.endTime + '</td><td class="pGreen">' + item.actualHour + '</td><td class="pGreen">' + item.targetHour + '</td><td class="pGreen">' + item.status + '</td><td class="pGreen"><button type="button" id="edit" onclick="editAttendance(' + item.attendanceId + ')" class=\"btnSelect btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addAttendanceUser"data-bs-whatever="@mdo\"> Edit</button></td><td class="pGreen"><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" onclick="modelDeleteAttendance(' + item.attendanceId + ')" data-bs-target="#deleteModel"data-bs-whatever="@mdo">Delete</button></td></tr>';
+
+          }
+        }
+
+        });
+
+        $("#data").empty();
+        $("#data").append(is_Data);
+        $("#attendanceButton").empty();
+        $("#attendanceButton").append(is_Data1);
+        $("#userDailyReport").empty();
+        $("#userDailyReport").append(is_Data2);
+
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+
+console.log(JSON.stringify(e.responseJSON.message));
+}
+    });
+  }
+  var del = "";
+  function modelDeleteAttendance(id) {
+    del = id;
+    document.getElementById('delAtt').hidden = false;
+    document.getElementById('delHol').hidden = true;
+
+  }
+
+
+
+  // -------------Save leave Calendar-----------------
+  $(document).ready(function () {
+    $("#saveHoliday").click(function () {
+
+      var postHoliday = jQuery.trim($("#holidayLeaveDate").val());
+      var postReason = jQuery.trim($("#reason").val());
+
+
+
+      if (postHoliday == '') {
+        $('#holidayLeaveDateError').text('Holiday Leave Date field is required');
+        return false;
+      } else {
+
+        $('#holidayLeaveDateError').empty();
+      }
+
+
+
+      if (postReason == '') {
+        $('#reasonError').text('Reason field is required');
+        return false;
+      } else {
+
+        $('#reasonError').empty();
+      }
+
+
+
+      var holidayLeaveDate = $('#holidayLeaveDate').val();
+      var reason = $('#reason').val();
+
+
+
+      var details = {
+
+        'holidayLeaveDate': holidayLeaveDate,
+        'reason': reason
+      };
+      console.log(details);
+      $.ajax({
+        url: "http://localhost:8080/leaveCalendar",
+        type: "POST",
+        data: JSON.stringify(details),
+        contentType: "application/json",
+        success: function (data) {
+          window.location = "index.html";
+          
+      
+          alert("Saved Leave Calendar");
+          // $('#holidayForm')[0].reset();
+          
+
+
+
+        }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+      });
+    })
+  })
+
+
+  // -----------------Edit Leave Calendar----------------------
+  var editDataId = "";
+  function editHoliday(id) {
+
+    editDataId = id;
+    document.getElementById('saveHoliday').hidden = true;
+    document.getElementById('updateHoliday').hidden = false;
+
+
+
+    $.ajax({
+      dataType: "JSON",
+      url: "http://localhost:8080/leaveCalendar/" + id,
+      type: "GET",
+
+      success: function (response) {
+
+        $('#holidayLeaveDate').val(response.holidayLeaveDate);
+        $('#reason').val(response.reason);
+
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+    });
+  }
+
+  function putHoliday() {
+
+    var details = {
+
+
+      'holidayLeaveDate': $('#holidayLeaveDate').val(),
+      'reason': $('#reason').val(),
+      'id': localStorage.getItem('userId')
+    };
+    $.ajax({
+      url: "http://localhost:8080/leaveCalendar/" + editDataId,
+      type: "PUT",
+      data: JSON.stringify(details),
+      contentType: "application/json",
+      success: function (data) {
+   
+        
+        alert("Update success");
+        window.location = "index.html";
+        
+        $('#holidayLeaveDate').val("");
+        $('#reason').val("");
+
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+
+    });
+  }
+
+
+  // --------delete Leave Calendar--------------
+
+  function deleteLeaveCalendar(id) {
+    $.ajax({
+      type: "DELETE",
+      dataTypa: "JSON",
+    
+      url: "http://localhost:8080/leaveCalendar/" + id,
+      success: function (responseText) {
+
+        window.location = "index.html";
+     
+
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+    });
+
+  }
+
+
+  // -----------get leave Calendar----------
+  function getHoliday() {
+    $.ajax({
+      type: "GET",
+      dataTypa: "JSON",
+      url: "http://localhost:8080/leaveCalendar",
+      success: function (responseText) {
+        var getHolidayData = "";
+        var getHolidayData1 = "";
+        var is_Data2 = "";
+  
+
+        if (localStorage.getItem('role') === 'Admin') {
+          getHolidayData1 += '<button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#exampleModall" data-bs-whatever="@mdo"><b>ADD LEAVE</b></button>';
+        }
+
+
+        if (localStorage.getItem('role') === 'User') {
+          is_Data2 += '<tr><th><b>Holiday LeaveDate</b></th><th><b>Reason</b></th></tr>';
+        }else{
+          is_Data2 += '<tr><th><b>Holiday LeaveDate</b></th><th><b>Reason</b></th><th colspan="2">Action</th></tr>';
+        }
+
+        $.each(responseText, function (index, item) {
+          if (localStorage.getItem('role') === 'Admin') {    
+
+
+            getHolidayData += '<tr><td>' + item.holidayLeaveDate + '</td><td>' + item.reason + '</td><td><button type="button" id="edit" onclick="editHoliday(' + item.id + ')" class=\"btnSelect btn btn-outline-primary" data-bs-toggle="modal"data-bs-target="#exampleModall" data-bs-whatever="@mdo\">Edit</button></td><td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" onclick="modelDeleteHoliday(' + item.id + ')" data-bs-target="#deleteModel"data-bs-whatever="@mdo">Delete</button></td></tr> ';
+          } else {
+            getHolidayData += '<tr><td>' + item.holidayLeaveDate + '</td><td>' + item.reason + '</td></tr>';
+
+          }
+
+        });
+        $("#holiday").empty();
+        $("#holiday").append(getHolidayData);
+        $("#leaveCallendarButton").empty();
+        $("#leaveCallendarButton").append(getHolidayData1);
+        $("#action").empty();
+        $("#action").append(is_Data2);
+      }, error: function (e) {
+        $(".modal-body").empty();
+		$(".modal-body").append(JSON.stringify(e.responseJSON.message));
+    $('#newModal').modal('show');
+        console.log(e);
+      }
+    });
+  }
+
+  var deleteHoliday = "";
+
+  function modelDeleteHoliday(id) {
+
+    document.getElementById('delAtt').hidden = true;
+    document.getElementById('delHol').hidden = false;
+    deleteHoliday = id;
+  }
+
+  //  -----------login------------
+
+  let name = localStorage.getItem('name') ? localStorage.getItem('name') : ''
+  console.log(name);
+  if (name == '') {
+    window.location = "login.html";
+  }
+
+  function logOut() {
+
+    window.localStorage.removeItem('id');
+    window.localStorage.removeItem('name');
+    window.localStorage.removeItem('userName');
+    window.localStorage.removeItem('mailId');
+    window.localStorage.removeItem('role');
+    window.localStorage.removeItem('employeeId');
+    window.localStorage.removeItem('designation');
+    window.localStorage.removeItem('team');
+    window.localStorage.removeItem('joinDate');
+    window.localStorage.removeItem('companyName');
+    window.localStorage.removeItem('city');
+    window.localStorage.removeItem('state');
+    window.localStorage.removeItem('pincode');
+    window.localStorage.removeItem('phoneNumber');
+
+    window.location = "login.html";
+
+  }
+
+  $(document).ready(function () {
+
+    if (localStorage.getItem('role') === 'Admin') {
+      overAllUserReport();
+
+    }
+    else {
+      attendance();
+
+
+    }
+
+
+
+
+
+
+
+
+  });
+
+</script>
+
+<div class="modal" id="newModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+     
+      <div class="modal-header">
+        <h4 class="modal-title">Error</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+       
+      </div>
+
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<body id="onLoad">
+  <div class="container-fluid">
+
+    <div class="modal fade" id="getModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center text-info" id="exampleModalLabel" style="padding-right:5%">
+              LEAVE CALENDAR</h5>
+            <div id="leaveCallendarButton"></div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+          </div>
+          <div class="modal-body">
+
+            <form>
+              <table class="table table-borderd">
+                <thead id="action" class="bg-primary text-white">
+               
+                 
+                </thead>
+                <tbody id="holiday">
+
+                </tbody>
+
+
+
+              </table>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- delete model -->
+
+
+    <div class="modal fade" id="deleteModel" tabindex="-1" aria-labelledby="exampleModalLabels" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center text-info" id="exampleModalLabels">Delete</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure Delete</p>
+          </div>
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" id="delAtt" hidden onclick="deleteAttendance(del)" data-bs-dismiss="modal"
+              class=" btn btn-primary">Delete</button>
+
+            <button type="button" id="delHol" hidden onclick="deleteLeaveCalendar(deleteHoliday)"
+              data-bs-dismiss="modal" class="btn btn-primary">Delete</button>
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="addAttendanceUser" tabindex="-1" aria-labelledby="exampleModalLabels"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center text-info" id="exampleModalLabels">ADD ATTENDANCE</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+
+            <form id="attendanceForm">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="Date">Date</label>                
+                    <input type="text" id="date" class="form-control form-control-lg " />
+                   
+
+                    <div class="error" style="color: red;" id="dateError"></div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="Start Time">Start Time</label>
+                    <input type="time" id="startTime" class="form-control form-control-lg" />
+                    <div class="error" style="color: red;" id="startTimeError"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="End Time">End Time</label>
+                    <input type="time" id="endTime" class="form-control form-control-lg" />
+                    <div class="error" style="color: red;" id="endTimeError"></div>
+                  </div>
+                </div>
+
+
+              </div>
+            </form>
+
+          </div>
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button hidden type="button" id="saveAttendance" data-bs-dismiss="modal" class=" btn btn-primary">Submit</button>
+            <button hidden type="button" id="updateAttendance" data-bs-dismiss="modal" class="btn btn-warning" onclick="putAttendance()">Update</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Over ALl Attendance -->
+
+
+    <div class="container mt-3">
+
+      <div class="rounded">
+
+      </div>
+      <div class="row">
+        <div class="col-sm-12 mt-3">
+          <table class="table table-borderd">
+            <thead id="overAllReport" class="bg-primary text-white">
+            </thead>
+
+
+            <tbody id="overAllAttendance">
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- End -->
+
+    <div id="attendanceButton"></div>
+
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-9">
+
+
+          <div class="rounded">
+
+          </div>
+          <div class="row">
+            <div class="col-sm-12 mt-3">
+
+              <table class="table table-borderd">
+                <thead id="userDailyReport" class="bg-primary text-white">
+
+                </thead>
+
+
+                <tbody id="data">
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-3" id="overAllStatusEmployee">
+
+
+
+
+
+
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabelll" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center text-info" id="exampleModalLabel">ADD LEAVE</h5>
+           
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+  
+            <form>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="Holiday Date">Holiday Date</label>
+                    <input type="date" id="holidayLeaveDate" class="form-control form-control-lg"
+                      placeholder="Holiday Leave Date" />
+                  </div>
+                </div>
+  
+  
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="Reason">Reason</label>
+                    <input type="text" id="reason" class="form-control form-control-lg" placeholder="Reason" />
+                  </div>
+                </div>
+  
+            </form>
+          </div>x
+        </div>
+
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" type="button" data-bs-dismiss="modal" id="saveHoliday">Submit</button>
+          <button data-bs-toggle="modal" hidden data-bs-target="#smallModel" type="button" id="updateHoliday"
+            class="btn btn-warning" onclick="putHoliday()">Update</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+</body>
+<style>
+  .chipRed {
+    display: inline-block;
+    padding: 0 25px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: red;
+    color:white;
+  }
+  
+  .chipGreen {
+    display: inline-block;
+    padding: 0 25px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: green;
+    color:white;
+  }
+
+  .pGreen {
+  color: green;
+}
+
+.pRed {
+  color: red;
+}
+  </style>
+
+
+
+
+</html>

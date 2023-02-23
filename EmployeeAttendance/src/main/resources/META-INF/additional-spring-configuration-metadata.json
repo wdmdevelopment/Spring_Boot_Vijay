@@ -1,0 +1,102 @@
+{"properties": [
+  {
+    "name": "filter.threshold.type",
+    "type": "java.lang.String",
+    "description": "A description for 'filter.threshold.type'"
+  },
+  {
+    "name": "status",
+    "type": "java.lang.String",
+    "description": "A description for 'status'"
+  },
+  {
+    "name": "appenders",
+    "type": "java.lang.String",
+    "description": "A description for 'appenders'"
+  },
+  {
+    "name": "rootLogger.level",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.level'"
+  },
+  {
+    "name": "appender.console.layout.pattern",
+    "type": "java.lang.String",
+    "description": "A description for 'appender.console.layout.pattern'"
+  },
+  {
+    "name": "rootLogger.appenderRefs",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.appenderRefs'"
+  },
+  {
+    "name": "rootLogger.appenderRef.stdout.ref",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.appenderRef.stdout.ref'"
+  },
+  {
+    "name": "appender.console.layout.type",
+    "type": "java.lang.String",
+    "description": "A description for 'appender.console.layout.type'"
+  },
+  {
+    "name": "appender.console.type",
+    "type": "java.lang.String",
+    "description": "A description for 'appender.console.type'"
+  },
+  {
+    "name": "filter.threshold.level",
+    "type": "java.lang.String",
+    "description": "A description for 'filter.threshold.level'"
+  },
+  {
+    "name": "name",
+    "type": "java.lang.String",
+    "description": "A description for 'name'"
+  },
+  {
+    "name": "appender.console.name",
+    "type": "java.lang.String",
+    "description": "A description for 'appender.console.name'"
+  },
+  {
+    "name": "rootLogger.appenderRef.stdout.ref",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.appenderRef.stdout.ref'"
+  },
+  {
+    "name": "rootLogger.appenderRef.stdout.ref",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.appenderRef.stdout.ref'"
+  },
+  {
+    "name": "rootLogger.appenderRefs",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.appenderRefs'"
+  },
+  {
+    "name": "rootLogger.appenderRefs",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.appenderRefs'"
+  },
+  {
+    "name": "rootLogger.appenderRefs",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.appenderRefs'"
+  },
+  {
+    "name": "rootLogger.appenderRefs",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.appenderRefs'"
+  },
+  {
+    "name": "rootLogger.appenderRefs",
+    "type": "java.lang.String",
+    "description": "A description for 'rootLogger.appenderRefs'"
+  },
+  {
+    "name": "attendance.per.day.hour",
+    "type": "java.lang.String",
+    "description": "A description for 'attendance.per.day.hour'"
+  }
+]}

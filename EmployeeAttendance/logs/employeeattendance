@@ -1,0 +1,22 @@
+2023-02-22 12:53:11,828 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-02-22 12:53:11,841 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting EmployeeAttendanceApplication using Java 17.0.5 on DESKTOP-85G7RT7 with PID 6680 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.17.0.RELEASE\Spring_Boot_Vijay\EmployeeAttendance\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.17.0.RELEASE\Spring_Boot_Vijay\EmployeeAttendance)
+2023-02-22 12:53:11,843 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-02-22 12:53:11,966 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-22 12:53:11,966 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-22 12:53:13,792 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-22 12:53:13,955 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 142 ms. Found 6 JPA repository interfaces.
+2023-02-22 12:53:15,006 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-02-22 12:53:15,028 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-22 12:53:15,030 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-02-22 12:53:15,030 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-02-22 12:53:15,206 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-02-22 12:53:15,208 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3241 ms
+2023-02-22 12:53:15,501 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-22 12:53:15,643 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-22 12:53:15,993 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-22 12:53:16,218 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-02-22 12:53:16,234 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-02-22 12:53:16,817 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-02-22 12:53:16,892 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-02-22 12:53:18,545 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-22 12:53:18,562 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
